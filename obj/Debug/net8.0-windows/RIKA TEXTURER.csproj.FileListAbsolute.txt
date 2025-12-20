@@ -1,0 +1,40 @@
+C:\Users\Cat\source\repos\RIKA TEXTURER\bin\Debug\net8.0-windows\RIKA TEXTURER.exe
+C:\Users\Cat\source\repos\RIKA TEXTURER\bin\Debug\net8.0-windows\RIKA TEXTURER.deps.json
+C:\Users\Cat\source\repos\RIKA TEXTURER\bin\Debug\net8.0-windows\RIKA TEXTURER.runtimeconfig.json
+C:\Users\Cat\source\repos\RIKA TEXTURER\bin\Debug\net8.0-windows\RIKA TEXTURER.dll
+C:\Users\Cat\source\repos\RIKA TEXTURER\bin\Debug\net8.0-windows\RIKA TEXTURER.pdb
+C:\Users\Cat\source\repos\RIKA TEXTURER\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Cat\source\repos\RIKA TEXTURER\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Cat\source\repos\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER_MarkupCompile.cache
+C:\Users\Cat\source\repos\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER_MarkupCompile.lref
+C:\Users\Cat\source\repos\RIKA TEXTURER\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Cat\source\repos\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.g.resources
+C:\Users\Cat\source\repos\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Cat\source\repos\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.AssemblyInfoInputs.cache
+C:\Users\Cat\source\repos\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.AssemblyInfo.cs
+C:\Users\Cat\source\repos\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.csproj.CoreCompileInputs.cache
+C:\Users\Cat\source\repos\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.dll
+C:\Users\Cat\source\repos\RIKA TEXTURER\obj\Debug\net8.0-windows\refint\RIKA TEXTURER.dll
+C:\Users\Cat\source\repos\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.pdb
+C:\Users\Cat\source\repos\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.genruntimeconfig.cache
+C:\Users\Cat\source\repos\RIKA TEXTURER\obj\Debug\net8.0-windows\ref\RIKA TEXTURER.dll
+F:\Programmer\RIKA TEXTURER\bin\Debug\net8.0-windows\RIKA TEXTURER.exe
+F:\Programmer\RIKA TEXTURER\bin\Debug\net8.0-windows\RIKA TEXTURER.deps.json
+F:\Programmer\RIKA TEXTURER\bin\Debug\net8.0-windows\RIKA TEXTURER.runtimeconfig.json
+F:\Programmer\RIKA TEXTURER\bin\Debug\net8.0-windows\RIKA TEXTURER.dll
+F:\Programmer\RIKA TEXTURER\bin\Debug\net8.0-windows\RIKA TEXTURER.pdb
+F:\Programmer\RIKA TEXTURER\obj\Debug\net8.0-windows\MainWindow.g.cs
+F:\Programmer\RIKA TEXTURER\obj\Debug\net8.0-windows\App.g.cs
+F:\Programmer\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER_MarkupCompile.cache
+F:\Programmer\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER_MarkupCompile.lref
+F:\Programmer\RIKA TEXTURER\obj\Debug\net8.0-windows\MainWindow.baml
+F:\Programmer\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.g.resources
+F:\Programmer\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.GeneratedMSBuildEditorConfig.editorconfig
+F:\Programmer\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.AssemblyInfoInputs.cache
+F:\Programmer\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.AssemblyInfo.cs
+F:\Programmer\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.csproj.CoreCompileInputs.cache
+F:\Programmer\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.dll
+F:\Programmer\RIKA TEXTURER\obj\Debug\net8.0-windows\refint\RIKA TEXTURER.dll
+F:\Programmer\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.pdb
+F:\Programmer\RIKA TEXTURER\obj\Debug\net8.0-windows\RIKA TEXTURER.genruntimeconfig.cache
+F:\Programmer\RIKA TEXTURER\obj\Debug\net8.0-windows\ref\RIKA TEXTURER.dll
