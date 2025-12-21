@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Microsoft.Win32;
 
 namespace RIKA_TEXTURER;
 
@@ -27,39 +28,66 @@ public partial class MainWindow : Window
         noTex.EndInit();
 
         img.Source = noTex;
-        TexPreview.Source = noTex;
+        texPreview.Source = noTex;
     }
 
     private void ScaleContent(object sender, RoutedEventArgs e)
     {
-        // Учет DPI и масштабирования Windows
         PresentationSource src = PresentationSource.FromVisual(this);
         Matrix matrix = src.CompositionTarget.TransformToDevice;
         double dpiFactorX = matrix.M11;
         double dpiFactorY = matrix.M22;
 
-        // Реальный доступный размер с учетом DPI
         double realScreenWidth = SystemParameters.WorkArea.Width / dpiFactorX;
         double realScreenHeight = SystemParameters.WorkArea.Height / dpiFactorY;
 
-        // Расчёт масштаба для оригинальных 1280x720
         double scale = Math.Min(
             realScreenWidth / 1280,
             realScreenHeight / 720
         ) * 0.9;
 
-        // Применяем трансформацию ко всему содержимому
         MainGrid.LayoutTransform = new ScaleTransform(scale, scale);
 
         // Автоматический подбор размеров окна
         this.SizeToContent = SizeToContent.WidthAndHeight;
 
-        // Фиксация размеров после масштабирования
         this.Width = this.ActualWidth;
         this.Height = this.ActualHeight;
 
-        // Центрирование
         this.Left = (SystemParameters.WorkArea.Width - this.Width) / 2;
         this.Top = (SystemParameters.WorkArea.Height - this.Height) / 2;
+    }
+
+    private void OpenModelClick(object sender, RoutedEventArgs e)
+    {
+        OpenFileDialog openFileDialog = new OpenFileDialog();
+        openFileDialog.Filter = "OBJ files (*.obj)|*.obj";
+
+        if (openFileDialog.ShowDialog() == true)
+        {
+            Texturer._obj = Obj.Parse(openFileDialog.FileName);
+            Texturer._obj.Triangulate();
+        }
+    }
+
+    private void DoClick(object sender, RoutedEventArgs e)
+    {
+        Texturer.Do(int.Parse(((ComboBoxItem)Resolution.SelectedItem).Content.ToString()));
+    }
+    private void OpenTextureClick(object sender, RoutedEventArgs e)
+    {
+        OpenFileDialog openFileDialog = new OpenFileDialog();
+        openFileDialog.Filter = "Images (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
+
+        if (openFileDialog.ShowDialog() == true)
+        {
+            Texturer._img = new BitmapImage();
+            Texturer._img.BeginInit();
+            Texturer._img.UriSource = new Uri(openFileDialog.FileName);
+            Texturer._img.EndInit();
+
+            img.Source = Texturer._img;
+            texPreview.Source = Texturer._img;
+        }
     }
 }

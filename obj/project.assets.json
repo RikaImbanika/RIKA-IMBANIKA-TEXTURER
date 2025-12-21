@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Programmer\\RIKA TEXTURER\\RIKA TEXTURER.csproj",
+      "projectUniqueName": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\RIKA TEXTURER.csproj",
       "projectName": "RIKA TEXTURER",
-      "projectPath": "F:\\Programmer\\RIKA TEXTURER\\RIKA TEXTURER.csproj",
+      "projectPath": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\RIKA TEXTURER.csproj",
       "packagesPath": "C:\\Users\\Cat\\.nuget\\packages\\",
-      "outputPath": "F:\\Programmer\\RIKA TEXTURER\\obj\\",
+      "outputPath": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
