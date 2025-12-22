@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RIKA TEXTURER")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f148c19f6489255dcfd41b72f95f6fd525abde4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1a91cd79ef26ed90cf02b4bf897b79ff3b31d206")]
 [assembly: System.Reflection.AssemblyProductAttribute("RIKA TEXTURER")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RIKA TEXTURER")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace RIKA_TEXTURER
 {
     public class TextureIsland
     {
         public List<int> FaceIndices { get; } = new();
-        public List<Vector2> UVs { get; } = new();
+        public List<System.Numerics.Vector2> UVs { get; } = new();
         public Rect Bounds { get; private set; }
 
         public void CalculateBounds()
