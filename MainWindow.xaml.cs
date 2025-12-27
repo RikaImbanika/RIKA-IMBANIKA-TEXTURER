@@ -74,8 +74,16 @@ public partial class MainWindow : Window
 
     private void DoClick(object sender, RoutedEventArgs e)
     {
+        int texSize = int.Parse(((ComboBoxItem)Resolution.SelectedItem).Content.ToString());
         float scaler = float.Parse(Scale.Text.Replace(',', '.'), CultureInfo.InvariantCulture);
-        Texturer.Do(int.Parse(((ComboBoxItem)Resolution.SelectedItem).Content.ToString()), scaler);
+        int limit = (int)float.Parse(CirclesLimit.Text.Replace(',', '.'), CultureInfo.InvariantCulture);
+
+        if (Texturer._obj != null)
+        {
+            Texturer.Do(texSize, scaler, limit);
+        }
+        else
+            MessageBox.Show("Please, select .obj first.");
     }
 
     private void OpenTextureClick(object sender, RoutedEventArgs e)

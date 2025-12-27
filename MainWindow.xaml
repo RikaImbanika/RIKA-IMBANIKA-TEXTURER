@@ -176,7 +176,42 @@
                                BorderThickness="0"
                                HorizontalAlignment="Stretch"
                                Width="370"
-                               VerticalContentAlignment="Center">0.5</TextBox>
+                               VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                            <TextBox.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform AngleX="3.873"/>
+                                    <RotateTransform/>
+                                    <TranslateTransform X="2.369"/>
+                                </TransformGroup>
+                            </TextBox.RenderTransform> 0.5
+                        </TextBox>
+                    </Grid>
+                </Border>
+
+                <Border Height="70" Margin="10,0,10,10" Background="#FF2196F3" CornerRadius="4">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock FontSize="30" Foreground="White" Margin="15,0" VerticalAlignment="Center">Circles limit:</TextBlock>
+                        <TextBox x:Name="CirclesLimit" Grid.Column="1" FontSize="30" 
+               Foreground="White"
+               Background="Transparent"
+               BorderThickness="0"
+               HorizontalAlignment="Stretch"
+               Width="370"
+               VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                            <TextBox.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform AngleX="3.873"/>
+                                    <RotateTransform/>
+                                    <TranslateTransform X="2.369"/>
+                                </TransformGroup>
+                            </TextBox.RenderTransform> 3000
+                        </TextBox>
                     </Grid>
                 </Border>
 
@@ -345,7 +380,7 @@
                         </Grid>
                     </Border>
                 </Grid>
-                
+
                 <Button Click="DoClick" Height="70" Margin="10,10,10,10">
                     <TextBlock Margin="0,-5,0,0" FontSize="40">Do</TextBlock>
                 </Button>

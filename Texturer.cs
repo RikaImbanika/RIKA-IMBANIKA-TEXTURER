@@ -18,14 +18,18 @@ namespace RIKA_TEXTURER
         public static Obj _obj;
         public static float[] _radiuses;
         public static ushort[] _islands;
-        public static Random _rnd;
         public static int _texSize;
         public static float _scaler;
 
         public static List<Vector2> _circles;
         public static List<float> _circlesRadiuses;
+        public static List<int> _border;
 
-        public static void Do(int texSize, float scaler)
+        public static int _t;
+
+        public static List<((double x, double y) point, (double x, double y) direction, int nextCirId, int prevCirId)> _nextPoints;
+
+        public static void Do(int texSize, float scaler, int circlesLimit)
         {
             Thread mt = new Thread(MT);
             mt.Start();
@@ -34,42 +38,61 @@ namespace RIKA_TEXTURER
             {
                 _texSize = texSize;
                 _scaler = scaler;
-                _rnd = new Random();
                 _radiuses = new float[texSize * texSize];
                 _islands = new ushort[texSize * texSize];
-                _radiuses = new float[texSize * texSize];
+                _nextPoints = new List<((double x, double y) point, (double x, double y) direction, int nextCirId, int prevCirId)>();
 
                 WriteableBitmap wbmp = WBMP.Create(_texSize);
 
                 List<TextureIsland> islands = IslandDetector.DetectIslands(_obj);
                 for (ushort island = 1; island <= islands.Count; island++)
                 {
-                    FillSizes(islands[island - 1].FaceIndices, island);
-                    Rect bounds = islands[island - 1].Bounds;
+                    List<((double x, double y) point, (double x, double y) direction)> newOnes = new List<((double x, double y) point, (double x, double y) direction)>();
 
-                    _circles = new List<Vector2>();
-                    _circlesRadiuses = new List<float>();
-                    List<Vector2> nextPoints = new List<Vector2>();
-
-                    Vector2 point = GetStartPoint(bounds, island);
-
-                    _circles.Add(point);
-                    _circlesRadiuses.Add(GetRadius(point));
-
-                    point = GetSecondPoint(bounds, island, point, _circlesRadiuses[0]);
-
-                    _circles.Add(point);
-                    _circlesRadiuses.Add(GetRadius(point));
-
-                    List<((double x, double y) point, (double x, double y) direction)> newOnes = CirclesIntersector.FindIntersectionPointsWithNormals(_circles[0].X, _circles[0].Y, _circlesRadiuses[0], _circles[1].X, _circles[1].Y, _circlesRadiuses[1]);
-                    GetMore(newOnes[0].point, newOnes[0].direction, island);
-                    GetMore(newOnes[1].point, newOnes[1].direction, island);
-
-                    Color color = Color.FromArgb(200, (byte)_rnd.Next(255), (byte)_rnd.Next(255), (byte)_rnd.Next(255));
-
-                    for (int i = 0; i < _circles.Count; i++)
+                    while (newOnes.Count < 2)
                     {
-                        WBMP.FillCircle(wbmp, _circles[i], _circlesRadiuses[i], color);
+                        FillSizes(islands[island - 1].FaceIndices, island);
+                        Rect bounds = islands[island - 1].Bounds;
+
+                        _circles = new List<Vector2>();
+                        _circlesRadiuses = new List<float>();
+                        _border = new List<int>();
+                        List<Vector2> nextPoints = new List<Vector2>();
+
+                        Vector2 point = GetStartPoint(bounds, island);
+
+                        _circles.Add(point);
+                        _circlesRadiuses.Add(GetRadius(point));
+                        _border.Add(0);
+
+                        point = GetSecondPoint(bounds, island, point, _circlesRadiuses[0]);
+
+                        _circles.Add(point);
+                        _circlesRadiuses.Add(GetRadius(point));
+                        _border.Add(1);
+
+                        newOnes = CirclesLogic.FindIntersectionPointsWithNormals(_circles[0].X, _circles[0].Y, _circlesRadiuses[0], _circles[1].X, _circles[1].Y, _circlesRadiuses[1]);
+
+                        if (newOnes.Count < 2)
+                            continue;
+
+                        _nextPoints.Add((newOnes[0].point, newOnes[0].direction, 1, 0));
+                        _nextPoints.Add((newOnes[1].point, newOnes[1].direction, 0, 1));
+
+                        int lim = 0;
+                        while (_nextPoints.Count > 0 && lim < circlesLimit)
+                        {                           
+                            MoreMoreMore(_nextPoints[0].point, _nextPoints[0].direction, island, _nextPoints[0].nextCirId, _nextPoints[0].prevCirId);
+                            _nextPoints.RemoveAt(0);
+                            lim++;
+                        }
+
+                        for (int i = 0; i < _circles.Count; i++)
+                        {
+                            Color color = Rainbow.GetRainbowColor(_t);
+                            WBMP.FillCircle(wbmp, _circles[i], _circlesRadiuses[i], color);
+                            _t++;
+                        }
                     }
                 }
 
@@ -80,14 +103,14 @@ namespace RIKA_TEXTURER
                     WindowsManager._mainWindow.img.Source = _resImg;
                 });
 
-                //WBMP.SaveToPng(wbmp, $"{Disk._programFiles}Result.png");
+                WBMP.SaveToPng(wbmp, $"{Disk._programFiles}Result.png");
 
                 Vector2 GetStartPoint(Rect bounds, ushort islandIndex)
                 {
                     while (true)
                     {
-                        int x = _rnd.Next((int)(bounds.Left * texSize), (int)(bounds.Right * texSize));
-                        int y = _rnd.Next((int)(bounds.Top * texSize), (int)(bounds.Bottom * texSize));
+                        int x = Disk._rnd.Next((int)(bounds.Left * texSize), (int)(bounds.Right * texSize));
+                        int y = Disk._rnd.Next((int)(bounds.Top * texSize), (int)(bounds.Bottom * texSize));
                         if (_islands[x + y * texSize] == islandIndex)
                             return new Vector2(x, y);
                     }
@@ -104,7 +127,7 @@ namespace RIKA_TEXTURER
 
                         if (GetIsland((int)point.X, (int)point.Y) == islandIndex)
                         {
-                            Vector2 res = PointToCircleSolver.FindCenterPoint(dir, point, islandIndex) ?? Vector2.Zero;
+                            Vector2 res = CircleToPointSolver.FindCenterPoint(dir, point, islandIndex) ?? Vector2.Zero;
 
                             if (GetIsland((int)res.X, (int)res.Y) == islandIndex)
                                 return res;
@@ -114,22 +137,211 @@ namespace RIKA_TEXTURER
                     return center + new Vector2(3, 0);
                 }
 
-                void GetMore((double x, double y) point, (double x, double y) direction, ushort islandIndex)
+                void MoreMoreMore((double x, double y) point, (double x, double y) direction, ushort islandIndex, int nextCirId, int prevCirId)
                 {
-                    if (GetIsland((int)point.x, (int)point.y) != islandIndex)
-                    {
-                        return;
-                    }
+                    //1
+
+                    int circleId = _circles.Count;
+
+                    int nextBorderId = _border.IndexOf(nextCirId);
+                    int prevBorderId = _border.IndexOf(prevCirId);
+
+                    int prevBorderId2 = nextBorderId - 1;
+                    int nextBorderId2 = prevBorderId + 1;
+
+                    if (nextBorderId2 == _border.Count)
+                        nextBorderId2 = 0;
+
+                    if (prevBorderId2 < 0)
+                        prevBorderId2 = _border.Count - 1;
+
+                    if (nextBorderId != nextBorderId2 || prevBorderId != prevBorderId2)
+                        return; //This is if previous border already changed too much
+
+                    //2
 
                     Vector2 dir = new Vector2((float)direction.x, (float)direction.y);
                     Vector2 pos = new Vector2((float)point.x, (float)point.y);
 
-                    Vector2 res = PointToCircleSolver.FindCenterPoint(dir, pos, islandIndex) ?? Vector2.Zero;
+                    Vector2 res = CircleToPointSolver.FindCenterPoint(dir, pos, islandIndex) ?? Vector2.Zero;
+                    (double x, double y) resT = (res.X, res.Y);
+
+                    //3
 
                     if (GetIsland((int)res.X, (int)res.Y) == islandIndex)
                     {
+                        float radius = GetRadius(res);
+
+                        Forward();
+
+                        //4
+
+                        Backward();
+
+                        //5
+
                         _circles.Add(res);
-                        _circlesRadiuses.Add(GetRadius(res));
+                        _circlesRadiuses.Add(radius);
+
+                        _border.Insert(nextBorderId, circleId);
+
+                        void Forward()
+                        {
+                            float minAngle = 1000f;
+                            int bestBorderId = 0;
+                            int bestSkip = 0;
+                            ((double x, double y) point, (double x, double y) direction) bestPoint = ((0, 0), (0, 0));
+
+                            if (nextBorderId == _border.Count)
+                                nextBorderId = 0;
+
+                            int localBorderId = nextBorderId;
+
+                            for (int skip = 0; skip < _border.Count; skip++)
+                            {
+                                nextCirId = _border[localBorderId];
+                                Vector2 bufdir = res - _circles[nextCirId];
+                                bufdir /= bufdir.Length();
+                                ((double x, double y) point, (double x, double y) direction) p = CirclesLogic.FindIntersection(res, radius, _circles[nextCirId], _circlesRadiuses[nextCirId], bufdir) ?? ((-404, -404), (1, 1));
+
+                                if (p.point.x != -404)
+                                {
+                                    Vector2 v2 = new Vector2((float)p.point.x, (float)p.point.y) - res;
+                                    float angle = CirclesLogic.GetAngleCounterClockwise(dir, v2);
+
+                                    if (angle < minAngle)
+                                    {
+                                        if (skip > 0)
+                                        {
+
+                                        }
+
+                                        minAngle = angle;
+                                        bestBorderId = localBorderId;
+                                        bestPoint = p;
+                                        bestSkip = skip;
+                                    }
+                                }
+                                
+                                localBorderId++;
+
+                                if (localBorderId == _border.Count)
+                                    localBorderId = 0;
+                            }
+
+                            if (bestSkip > 0)
+                            {
+                                localBorderId = nextBorderId;
+
+                                for (int skip = 0; skip < bestSkip; skip++)
+                                {
+                                    _border.RemoveAt(localBorderId);
+
+                                    if (localBorderId == _border.Count)
+                                        localBorderId = 0;
+                                }
+                            }
+
+                            nextBorderId = localBorderId;
+
+                            prevBorderId = nextBorderId - 1;
+                            if (prevBorderId < 0)
+                                prevBorderId = _border.Count - 1;
+
+                            nextCirId = _border[nextBorderId];
+                            prevCirId = _border[prevBorderId];
+
+                            if (GetIsland((int)bestPoint.point.x, (int)bestPoint.point.y) == islandIndex)
+                            {
+                                _nextPoints.Add(((bestPoint.point.x, bestPoint.point.y), bestPoint.direction, nextCirId, circleId));
+                            }
+
+                            if (nextBorderId < 0)
+                            {
+
+                            }
+                        }
+
+                        void Backward()
+                        {
+                            float minAngle = 1000f;
+                            int bestBorderId = 0;
+                            int bestSkip = 0;
+                            ((double x, double y) point, (double x, double y) direction) bestPoint = ((0, 0), (0, 0));
+
+                            if (prevBorderId < 0)
+                                prevBorderId = _border.Count - 1;
+
+                            int localBorderId = prevBorderId;
+
+                            for (int skip = 0; skip < _border.Count; skip++)
+                            {
+                                prevCirId = _border[localBorderId];
+                                Vector2 bufdir = _circles[prevCirId] - res;
+                                bufdir /= bufdir.Length();
+                                ((double x, double y) point, (double x, double y) direction) p = CirclesLogic.FindIntersection(_circles[prevCirId], _circlesRadiuses[prevCirId], res, radius, bufdir) ?? ((-404, -404), (1, 1));
+
+                                if (p.point.x != -404)
+                                {
+                                    Vector2 v2 = new Vector2((float)p.point.x, (float)p.point.y) - res;
+                                    float angle = CirclesLogic.GetAngleClockwise(dir, v2);
+
+                                    if (angle < minAngle)
+                                    {
+                                        if (skip > 0)
+                                        {
+
+                                        }
+
+                                        minAngle = angle;
+                                        bestBorderId = localBorderId;
+                                        bestPoint = p;
+                                        bestSkip = skip;
+                                    }
+                                }
+
+                                localBorderId--;
+
+                                if (localBorderId < 0)
+                                    localBorderId = _border.Count - 1;
+                            }
+
+                            if (bestSkip > 0)
+                            {
+                                localBorderId = prevBorderId;
+
+                                for (int skip = 0; skip < bestSkip; skip++)
+                                {
+                                    _border.RemoveAt(localBorderId);
+
+                                    localBorderId--;
+
+                                    if (localBorderId < 0)
+                                        localBorderId = _border.Count - 1;
+                                }
+                            }
+
+                            prevBorderId = localBorderId;
+
+                            nextBorderId = prevBorderId + 1;
+
+                            if (nextBorderId == _border.Count)
+                                nextBorderId = 0;
+
+                            prevCirId = _border[prevBorderId];
+
+                            nextCirId = _border[nextBorderId];
+
+                            if (GetIsland((int)bestPoint.point.x, (int)bestPoint.point.y) == islandIndex)
+                            {
+                                _nextPoints.Add(((bestPoint.point.x, bestPoint.point.y), bestPoint.direction, circleId, prevCirId)); //Don't even try to touch
+                            }
+
+                            if (nextBorderId < 0)
+                            {
+
+                            }
+                        }
                     }
                 }
 
@@ -189,18 +401,9 @@ namespace RIKA_TEXTURER
             return _islands[x + y * _texSize];
         }
 
-        public static float GetIsland(Vector2 point)
+        public static ushort GetIsland(Vector2 point)
         {
-            return GetIsland((int)point.X, (int)point.Y);
-        }
-
-        private static bool IsPointInTriangle(Vector2 p, Vector2 a, Vector2 b, Vector2 c)
-        {
-            float s1 = (b.Y - a.Y) * (p.X - a.X) - (b.X - a.X) * (p.Y - a.Y);
-            float s2 = (c.Y - b.Y) * (p.X - b.X) - (c.X - b.X) * (p.Y - b.Y);
-            float s3 = (a.Y - c.Y) * (p.X - c.X) - (a.X - c.X) * (p.Y - c.Y);
-
-            return (s1 >= 0 && s2 >= 0 && s3 >= 0) || (s1 <= 0 && s2 <= 0 && s3 <= 0);
+            return GetIsland((ushort)point.X, (ushort)point.Y);
         }
     }
 }
