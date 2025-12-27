@@ -9,10 +9,12 @@ namespace RIKA_TEXTURER
     public static class Disk
     {
         public static string _programFiles;
+        public static Random _rnd;
 
         static Disk()
         {
             _programFiles = $"{Environment.CurrentDirectory}\\ProgramFiles\\";
+            _rnd = new Random();
         }
     }
 }

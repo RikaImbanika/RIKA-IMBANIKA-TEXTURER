@@ -28,10 +28,12 @@ namespace RIKA_TEXTURER
         }
 
         private static void FloodFillIsland(Obj obj, int startFaceIndex,
-            bool[] visitedFaces, TextureIsland island)
+    bool[] visitedFaces, TextureIsland island)
         {
             var stack = new Stack<int>();
             stack.Push(startFaceIndex);
+
+            var uvIndexMap = new Dictionary<int, int>(); // old index -> new index
 
             while (stack.Count > 0)
             {
@@ -42,14 +44,24 @@ namespace RIKA_TEXTURER
                 island.FaceIndices.Add(faceIdx);
 
                 var face = obj.Faces[faceIdx];
-                foreach (var uvIdx in face.TexCoordIndices)
+
+                // Process UV indices for this face
+                foreach (var oldUvIdx in face.TexCoordIndices)
                 {
-                    island.UVs.Add(obj.TexCoords[uvIdx]);
+                    if (!uvIndexMap.ContainsKey(oldUvIdx))
+                    {
+                        uvIndexMap[oldUvIdx] = island.UVs.Count;
+                        island.UVs.Add(obj.TexCoords[oldUvIdx]);
+                    }
                 }
 
+                // Get neighbors without passing visitedFaces
                 foreach (int neighborIdx in FindNeighborFaces(obj, faceIdx, visitedFaces))
                 {
-                    stack.Push(neighborIdx);
+                    if (!visitedFaces[neighborIdx])
+                    {
+                        stack.Push(neighborIdx);
+                    }
                 }
             }
         }

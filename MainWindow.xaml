@@ -170,13 +170,13 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock FontSize="30" Foreground="White" Margin="15,0" VerticalAlignment="Center">Scale:</TextBlock>
-                        <TextBox Grid.Column="1" FontSize="30" 
+                        <TextBox x:Name="Scale" Grid.Column="1" FontSize="30" 
                                Foreground="White"
                                Background="Transparent"
                                BorderThickness="0"
                                HorizontalAlignment="Stretch"
                                Width="370"
-                               VerticalContentAlignment="Center">1.0</TextBox>
+                               VerticalContentAlignment="Center">0.5</TextBox>
                     </Grid>
                 </Border>
 

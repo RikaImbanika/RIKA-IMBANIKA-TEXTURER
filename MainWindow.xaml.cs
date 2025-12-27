@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         Loaded += ScaleContent;
+        WindowsManager._mainWindow = this;
 
         string noTexPath = $"{Disk._programFiles}NoTex.jpg";
         var noTex = new BitmapImage();
@@ -48,7 +50,7 @@ public partial class MainWindow : Window
 
         MainGrid.LayoutTransform = new ScaleTransform(scale, scale);
 
-        // Автоматический подбор размеров окна
+        // Autosomething
         this.SizeToContent = SizeToContent.WidthAndHeight;
 
         this.Width = this.ActualWidth;
@@ -72,8 +74,10 @@ public partial class MainWindow : Window
 
     private void DoClick(object sender, RoutedEventArgs e)
     {
-        Texturer.Do(int.Parse(((ComboBoxItem)Resolution.SelectedItem).Content.ToString()));
+        float scaler = float.Parse(Scale.Text.Replace(',', '.'), CultureInfo.InvariantCulture);
+        Texturer.Do(int.Parse(((ComboBoxItem)Resolution.SelectedItem).Content.ToString()), scaler);
     }
+
     private void OpenTextureClick(object sender, RoutedEventArgs e)
     {
         OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -81,13 +85,13 @@ public partial class MainWindow : Window
 
         if (openFileDialog.ShowDialog() == true)
         {
-            Texturer._img = new BitmapImage();
-            Texturer._img.BeginInit();
-            Texturer._img.UriSource = new Uri(openFileDialog.FileName);
-            Texturer._img.EndInit();
+            Texturer._tex = new BitmapImage();
+            Texturer._tex.BeginInit();
+            Texturer._tex.UriSource = new Uri(openFileDialog.FileName);
+            Texturer._tex.EndInit();
 
-            img.Source = Texturer._img;
-            texPreview.Source = Texturer._img;
+            img.Source = Texturer._tex;
+            texPreview.Source = Texturer._tex;
         }
     }
 }
