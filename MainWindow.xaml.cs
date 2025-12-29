@@ -76,11 +76,12 @@ public partial class MainWindow : Window
     {
         int texSize = int.Parse(((ComboBoxItem)Resolution.SelectedItem).Content.ToString());
         float scaler = float.Parse(Scale.Text.Replace(',', '.'), CultureInfo.InvariantCulture);
-        int limit = (int)float.Parse(CirclesLimit.Text.Replace(',', '.'), CultureInfo.InvariantCulture);
+        int startCount = (int)float.Parse(StartCount.Text.Replace(',', '.'), CultureInfo.InvariantCulture);
+        string order = ((ComboBoxItem)FillOrder.SelectedItem).Content.ToString();
 
-        if (Texturer._obj != null)
+        if (Texturer._obj != null && Texturer._tex != null)
         {
-            Texturer.Do(texSize, scaler, limit);
+            Texturer.Do(texSize, scaler, startCount, order);
         }
         else
             MessageBox.Show("Please, select .obj first.");

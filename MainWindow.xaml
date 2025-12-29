@@ -184,7 +184,7 @@
                                     <RotateTransform/>
                                     <TranslateTransform X="2.369"/>
                                 </TransformGroup>
-                            </TextBox.RenderTransform> 0.5
+                            </TextBox.RenderTransform> 0.3
                         </TextBox>
                     </Grid>
                 </Border>
@@ -195,8 +195,8 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock FontSize="30" Foreground="White" Margin="15,0" VerticalAlignment="Center">Circles limit:</TextBlock>
-                        <TextBox x:Name="CirclesLimit" Grid.Column="1" FontSize="30" 
+                        <TextBlock FontSize="30" Foreground="White" Margin="15,0" VerticalAlignment="Center">Start count:</TextBlock>
+                        <TextBox x:Name="StartCount" Grid.Column="1" FontSize="30" 
                Foreground="White"
                Background="Transparent"
                BorderThickness="0"
@@ -210,10 +210,141 @@
                                     <RotateTransform/>
                                     <TranslateTransform X="2.369"/>
                                 </TransformGroup>
-                            </TextBox.RenderTransform> 3000
+                            </TextBox.RenderTransform> 1
                         </TextBox>
                     </Grid>
                 </Border>
+
+                <Border Height="70" Margin="10,0,10,10" Background="#FF2196F3" CornerRadius="4">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock FontSize="30" Foreground="White" Margin="15,0" VerticalAlignment="Center">Fill order:</TextBlock>
+                        <ComboBox x:Name="FillOrder" Grid.Column="1"
+    FontSize="30"
+    SelectedIndex="1"
+    VerticalContentAlignment="Center"
+    Margin="5,0,5,0">
+                            <ComboBox.Style>
+                                <Style TargetType="ComboBox">
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="Background" Value="#FF2196F3"/>
+                                    <Setter Property="BorderBrush" Value="#FF000000"/>
+                                    <Setter Property="BorderThickness" Value="2"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ComboBox">
+                                                <Grid>
+                                                    <ToggleButton x:Name="ToggleButton"
+Focusable="false"
+IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+ClickMode="Press">
+                                                        <ToggleButton.Template>
+                                                            <ControlTemplate TargetType="ToggleButton">
+                                                                <Grid Background="#FF2196F3">
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*"/>
+                                                                        <ColumnDefinition Width="20"/>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <!-- ContentPresenter с ContentTemplate -->
+                                                                    <ContentPresenter Content="{Binding SelectedItem.Content, RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="3,0,0,0">
+                                                                        <ContentPresenter.ContentTemplate>
+                                                                            <DataTemplate>
+                                                                                <TextBlock Text="{Binding}" Foreground="White"/>
+                                                                            </DataTemplate>
+                                                                        </ContentPresenter.ContentTemplate>
+                                                                    </ContentPresenter>
+                                                                    <Path x:Name="Arrow"
+        Grid.Column="1"
+        Fill="White"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                                                </Grid>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsMouseOver" Value="true">
+                                                                        <Setter TargetName="Arrow" Property="Fill" Value="#FFAACCFF"/>
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsPressed" Value="true">
+                                                                        <Setter TargetName="Arrow" Property="Fill" Value="#FF0033FF"/>
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </ToggleButton.Template>
+                                                    </ToggleButton>
+                                                    <Popup x:Name="Popup"
+                             Placement="Bottom"
+                             Focusable="False"
+                             AllowsTransparency="True"
+                             IsOpen="{TemplateBinding IsDropDownOpen}"
+                             PopupAnimation="Slide">
+                                                        <Grid x:Name="DropDown"
+                                SnapsToDevicePixels="True" 
+                                MinWidth="{TemplateBinding ActualWidth}"
+                                MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                                            <Border x:Name="DropDownBorder"
+                                      Background="#FF2196F3"
+                                      BorderBrush="#FF000000"
+                                      BorderThickness="2"
+                                      CornerRadius="0,0,4,4"/>
+                                                            <ScrollViewer SnapsToDevicePixels="True">
+                                                                <ItemsPresenter/>
+                                                            </ScrollViewer>
+                                                        </Grid>
+                                                    </Popup>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsDropDownOpen" Value="true">
+                                                        <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ComboBox.Style>
+
+                            <ComboBox.Resources>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="Background" Value="#FF2196F3"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="#FF000000"/>
+                                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ComboBoxItem">
+                                                <Border Background="{TemplateBinding Background}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}">
+                                                    <ContentPresenter Margin="10,5"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsHighlighted" Value="True">
+                                                        <Setter Property="Background" Value="#FF1976D2"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsSelected" Value="True">
+                                                        <Setter Property="Background" Value="#FF0D47A1"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ComboBox.Resources>
+
+                            <ComboBoxItem>Random</ComboBoxItem>
+                            <ComboBoxItem>First</ComboBoxItem>
+                            <ComboBoxItem>Last</ComboBoxItem>
+                            <ComboBoxItem>Middle</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                </Border>
+
 
                 <Border Height="70" Margin="10,0,10,10" Background="#FF2196F3" CornerRadius="4">
                     <Grid>

@@ -169,8 +169,6 @@ namespace RIKA_TEXTURER
             const float epsilon = 1e-7f;
 
             // Select point with smallest positive angle
-            if (angle1 < epsilon && angle2 < epsilon)
-                return Vector2.Zero;
 
             if (angle1 < epsilon)
                 return p2;
