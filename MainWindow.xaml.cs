@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Microsoft.Win32;
 
-namespace RIKA_TEXTURER;
+namespace RIKA_IMBANIKA_TEXTURER;
 
 public partial class MainWindow : Window
 {
@@ -22,7 +22,9 @@ public partial class MainWindow : Window
         Loaded += ScaleContent;
         WindowsManager._mainWindow = this;
 
-        string noTexPath = $"{Disk._programFiles}NoTex.jpg";
+        S.Init();
+
+        string noTexPath = $"{S.PF}NoTex.jpg";
         var noTex = new BitmapImage();
         noTex.BeginInit();
         noTex.UriSource = new Uri(noTexPath, UriKind.Absolute);
@@ -31,6 +33,8 @@ public partial class MainWindow : Window
 
         img.Source = noTex;
         texPreview.Source = noTex;
+
+        Title = $"{S.AppName} - {S.GetHello()}";
     }
 
     private void ScaleContent(object sender, RoutedEventArgs e)
@@ -102,5 +106,10 @@ public partial class MainWindow : Window
             img.Source = Texturer._tex;
             texPreview.Source = Texturer._tex;
         }
+    }
+
+    private void SmoothClick(object sender, RoutedEventArgs e)
+    {
+        Texturer.Smooth();
     }
 }

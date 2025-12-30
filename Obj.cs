@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Numerics;
 
 
-namespace RIKA_TEXTURER
+namespace RIKA_IMBANIKA_TEXTURER
 {
     public class Obj
     {
@@ -110,6 +110,21 @@ namespace RIKA_TEXTURER
 
             Faces.Clear();
             Faces.AddRange(triangulatedFaces);
+        }
+
+        public float GetMaxSize()
+        {
+            if (Vertices.Count == 0)
+                return 0f;
+
+            float minX = Vertices.Min(v => v.X);
+            float maxX = Vertices.Max(v => v.X);
+            float minY = Vertices.Min(v => v.Y);
+            float maxY = Vertices.Max(v => v.Y);
+            float minZ = Vertices.Min(v => v.Z);
+            float maxZ = Vertices.Max(v => v.Z);
+
+            return Math.Max(maxX - minX, Math.Max(maxY - minY, maxZ - minZ));
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace RIKA_TEXTURER;
+namespace RIKA_IMBANIKA_TEXTURER;
 
 /// <summary>
 /// Interaction logic for App.xaml

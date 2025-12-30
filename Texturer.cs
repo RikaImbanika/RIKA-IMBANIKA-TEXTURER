@@ -9,7 +9,7 @@ using System.Numerics;
 using System.Windows;
 using System.Windows.Threading;
 
-namespace RIKA_TEXTURER
+namespace RIKA_IMBANIKA_TEXTURER
 {
     public static class Texturer
     {
@@ -41,7 +41,7 @@ namespace RIKA_TEXTURER
 
                 if (angleId == 5 && scaleId == 10)
                 {
-                    WBMP.SaveToPng(_cache3[(scaleId, angleId)], $"{Disk._programFiles}CacheTest.png");
+                    WBMP.SaveToPng(_cache3[(scaleId, angleId)], $"{S.PF}CacheTest.png");
                 }
 
                 return _cache3[(scaleId, angleId)];
@@ -121,7 +121,7 @@ namespace RIKA_TEXTURER
             void MT()
             {
                 _texSize = texSize;
-                _scaler = scaler;
+                _scaler = scaler * DefineScaleCoefficient();
                 _radiuses = new float[texSize * texSize];
                 _islands = new ushort[texSize * texSize];
 
@@ -148,7 +148,7 @@ namespace RIKA_TEXTURER
 
                         if (fillType == "Random")
                         {
-                            id = Disk._rnd.Next(_nextPoints.Count - 1);
+                            id = S.Rnd.Next(_nextPoints.Count - 1);
                         }
                         else if (fillType == "First")
                         {
@@ -187,7 +187,7 @@ namespace RIKA_TEXTURER
                         scale = Math.Pow(scale, 0.33333333);
                         int scaleId = (int)(scale * 32);
 
-                        int rotationId = Disk._rnd.Next(32);
+                        int rotationId = S.Rnd.Next(32);
 
                         WriteableBitmap img = GetCachedImage(rotationId, scaleId);
 
@@ -224,7 +224,7 @@ namespace RIKA_TEXTURER
                     WindowsManager._mainWindow.img.Source = _resImg;
                 });
 
-                WBMP.SaveToPng(_daemon, $"{Disk._programFiles}Result1.png");
+                WBMP.SaveToPng(_daemon, $"{S.PF}Result1.png");
 
                 _resImg = WBMP.ConvertToBitmapImage(wbmp);
 
@@ -233,7 +233,7 @@ namespace RIKA_TEXTURER
                     WindowsManager._mainWindow.img.Source = _resImg;
                 });
 
-                WBMP.SaveToPng(wbmp, $"{Disk._programFiles}Result2.png");
+                WBMP.SaveToPng(wbmp, $"{S.PF}Result2.png");
 
                 ClearCache();
 
@@ -241,11 +241,16 @@ namespace RIKA_TEXTURER
                 {
                     while (true)
                     {
-                        int x = Disk._rnd.Next((int)(bounds.Left * texSize), (int)(bounds.Right * texSize));
-                        int y = Disk._rnd.Next((int)(bounds.Top * texSize), (int)(bounds.Bottom * texSize));
+                        int x = S.Rnd.Next((int)(bounds.Left * texSize), (int)(bounds.Right * texSize));
+                        int y = S.Rnd.Next((int)(bounds.Top * texSize), (int)(bounds.Bottom * texSize));
                         if (_islands[x + y * texSize] == islandIndex)
                             return new Vector2(x, y);
                     }
+                }
+
+                float DefineScaleCoefficient()
+                {
+                    return _obj.GetMaxSize() / 3f;
                 }
 
                 void MoreMoreMore((int x, int y) point, ushort islandId)
@@ -337,6 +342,22 @@ namespace RIKA_TEXTURER
                         );
                     }
                 }
+            }
+        }
+
+        public static void Smooth()
+        {
+            if (_nextPoints.Count > 0)
+                return;
+
+            if (_circles != null && _circles.Count > 0)
+                return;
+
+            Thread mt = new Thread(MT);
+            mt.Start();
+
+            void MT()
+            {
             }
         }
 

@@ -1,0 +1,22 @@
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\bin\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER.exe
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\bin\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER.deps.json
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\bin\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER.runtimeconfig.json
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\bin\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER.dll
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\bin\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER.pdb
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\MainWindow.g.cs
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\App.g.cs
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER_Content.g.cs
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER_MarkupCompile.cache
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER_MarkupCompile.lref
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\MainWindow.baml
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER.g.resources
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER.GeneratedMSBuildEditorConfig.editorconfig
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER.AssemblyInfoInputs.cache
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER.AssemblyInfo.cs
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER.csproj.CoreCompileInputs.cache
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER.sourcelink.json
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER.dll
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\refint\RIKA IMBNIKA TEXTURER.dll
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER.pdb
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\RIKA IMBNIKA TEXTURER.genruntimeconfig.cache
+F:\Programmer\RIKA-IMBANIKA-TEXTURER\obj\Debug\net8.0-windows\ref\RIKA IMBNIKA TEXTURER.dll

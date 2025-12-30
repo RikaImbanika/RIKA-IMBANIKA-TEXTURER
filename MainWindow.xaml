@@ -1,9 +1,9 @@
-﻿<Window x:Class="RIKA_TEXTURER.MainWindow"
+﻿<Window x:Class="RIKA_IMBANIKA_TEXTURER.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RIKA_TEXTURER"
+        xmlns:local="clr-namespace:RIKA_IMBANIKA_TEXTURER"
         mc:Ignorable="d"
         Title="RIKA IMBANIKA TEXTURER" Height="720" Width="1280"
         SizeToContent="Manual"
@@ -163,57 +163,63 @@
                     <Image x:Name="texPreview" Grid.Column="1"></Image>
                 </Grid>
 
-                <Border Height="70" Margin="10,0,10,10" Background="#FF2196F3" CornerRadius="4">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock FontSize="30" Foreground="White" Margin="15,0" VerticalAlignment="Center">Scale:</TextBlock>
-                        <TextBox x:Name="Scale" Grid.Column="1" FontSize="30" 
+                <Grid Height="70" Margin="10,0,10,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Height="70" Margin="0,0,5,0" Background="#FF2196F3" CornerRadius="4">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock FontSize="30" Foreground="White" Margin="15,0" VerticalAlignment="Center">Scale:</TextBlock>
+                            <TextBox x:Name="Scale" Grid.Column="1" FontSize="30" 
                                Foreground="White"
                                Background="Transparent"
                                BorderThickness="0"
                                HorizontalAlignment="Stretch"
                                Width="370"
                                VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5">
-                            <TextBox.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform/>
-                                    <SkewTransform AngleX="3.873"/>
-                                    <RotateTransform/>
-                                    <TranslateTransform X="2.369"/>
-                                </TransformGroup>
-                            </TextBox.RenderTransform> 0.3
-                        </TextBox>
-                    </Grid>
-                </Border>
+                                <TextBox.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform AngleX="3.873"/>
+                                        <RotateTransform/>
+                                        <TranslateTransform X="2.369"/>
+                                    </TransformGroup>
+                                </TextBox.RenderTransform> 0.5
+                            </TextBox>
+                        </Grid>
+                    </Border>
 
-                <Border Height="70" Margin="10,0,10,10" Background="#FF2196F3" CornerRadius="4">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock FontSize="30" Foreground="White" Margin="15,0" VerticalAlignment="Center">Start count:</TextBlock>
-                        <TextBox x:Name="StartCount" Grid.Column="1" FontSize="30" 
+                    <Border Height="70" Grid.Column="1" Margin="5,0,0,0" Background="#FF2196F3" CornerRadius="4">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock FontSize="30" Foreground="White" Margin="15,0" VerticalAlignment="Center">Start count:</TextBlock>
+                            <TextBox x:Name="StartCount" Grid.Column="1" FontSize="30" 
                Foreground="White"
                Background="Transparent"
                BorderThickness="0"
                HorizontalAlignment="Stretch"
                Width="370"
                VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5">
-                            <TextBox.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform/>
-                                    <SkewTransform AngleX="3.873"/>
-                                    <RotateTransform/>
-                                    <TranslateTransform X="2.369"/>
-                                </TransformGroup>
-                            </TextBox.RenderTransform> 1
-                        </TextBox>
-                    </Grid>
-                </Border>
+                                <TextBox.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform AngleX="3.873"/>
+                                        <RotateTransform/>
+                                        <TranslateTransform X="2.369"/>
+                                    </TransformGroup>
+                                </TextBox.RenderTransform> 1
+                            </TextBox>
+                        </Grid>
+                    </Border>
+                </Grid>
 
                 <Border Height="70" Margin="10,0,10,10" Background="#FF2196F3" CornerRadius="4">
                     <Grid>
@@ -224,7 +230,7 @@
                         <TextBlock FontSize="30" Foreground="White" Margin="15,0" VerticalAlignment="Center">Fill order:</TextBlock>
                         <ComboBox x:Name="FillOrder" Grid.Column="1"
     FontSize="30"
-    SelectedIndex="1"
+    SelectedIndex="0"
     VerticalContentAlignment="Center"
     Margin="5,0,5,0">
                             <ComboBox.Style>
@@ -355,7 +361,7 @@ ClickMode="Press">
                         <TextBlock FontSize="30" Foreground="White" Margin="15,0" VerticalAlignment="Center">Resolution:</TextBlock>
                         <ComboBox x:Name="Resolution" Grid.Column="1"
                   FontSize="30"
-                  SelectedIndex="1"
+                  SelectedIndex="4"
                   VerticalContentAlignment="Center"
                   Margin="5,0,5,0">
                             <ComboBox.Style>
@@ -468,10 +474,15 @@ ClickMode="Press">
                                 </Style>
                             </ComboBox.Resources>
 
+                            <ComboBoxItem>32</ComboBoxItem>
+                            <ComboBoxItem>64</ComboBoxItem>
+                            <ComboBoxItem>128</ComboBoxItem>
+                            <ComboBoxItem>256</ComboBoxItem>
                             <ComboBoxItem>512</ComboBoxItem>
                             <ComboBoxItem>1024</ComboBoxItem>
                             <ComboBoxItem>2048</ComboBoxItem>
                             <ComboBoxItem>4096</ComboBoxItem>
+                            <ComboBoxItem>8192</ComboBoxItem>
                         </ComboBox>
                     </Grid>
                 </Border>
@@ -482,7 +493,7 @@ ClickMode="Press">
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Border Height="70" Margin="0,0,5,0" Background="#FF2196F3" CornerRadius="4">
+                    <Border Height="70" Margin="0,0,5,0" Background="Gray" CornerRadius="4">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -494,7 +505,7 @@ ClickMode="Press">
                         </Grid>
                     </Border>
 
-                    <Border Height="70" Grid.Column="1" Margin="5,0,0,0" Background="#FF2196F3" CornerRadius="4">
+                    <Border Height="70" Grid.Column="1" Margin="5,0,0,0" Background="Gray" CornerRadius="4">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -512,8 +523,12 @@ ClickMode="Press">
                     </Border>
                 </Grid>
 
-                <Button Click="DoClick" Height="70" Margin="10,10,10,10">
-                    <TextBlock Margin="0,-5,0,0" FontSize="40">Do</TextBlock>
+                <Button Click="DoClick" Height="70" Margin="10,0,10,10">
+                    <TextBlock Margin="0,-5,0,0" FontSize="40">Create texrute</TextBlock>
+                </Button>
+
+                <Button Click="SmoothClick" Height="70" Margin="10,0,10,10">
+                    <TextBlock Margin="0,-5,0,0" FontSize="40">Smooth seams</TextBlock>
                 </Button>
             </StackPanel>
         </Grid>

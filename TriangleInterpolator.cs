@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RIKA_TEXTURER
+namespace RIKA_IMBANIKA_TEXTURER
 {
     public class TriangleInterpolator
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace RIKA_TEXTURER
+namespace RIKA_IMBANIKA_TEXTURER
 {
     public static class Rainbow
     {

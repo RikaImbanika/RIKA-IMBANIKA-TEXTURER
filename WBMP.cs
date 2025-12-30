@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace RIKA_TEXTURER
+namespace RIKA_IMBANIKA_TEXTURER
 {
     public static class WBMP
     {

@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\RIKA TEXTURER.csproj",
-      "projectName": "RIKA TEXTURER",
-      "projectPath": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\RIKA TEXTURER.csproj",
+      "projectUniqueName": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\RIKA IMBNIKA TEXTURER.csproj",
+      "projectName": "RIKA IMBNIKA TEXTURER",
+      "projectPath": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\RIKA IMBNIKA TEXTURER.csproj",
       "packagesPath": "C:\\Users\\Cat\\.nuget\\packages\\",
       "outputPath": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\obj\\",
       "projectStyle": "PackageReference",
