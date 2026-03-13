@@ -28,5 +28,7 @@ namespace RIKA_IMBANIKA_TEXTURER
 
             Bounds = new Rect(minX, minY, maxX - minX, maxY - minY);
         }
+
+        //Walk it around!
     }
 }

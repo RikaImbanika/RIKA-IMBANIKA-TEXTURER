@@ -17,7 +17,9 @@ namespace RIKA_IMBANIKA_TEXTURER
         public static BitmapImage _resImg;
         public static Obj _obj;
         public static float[] _radiuses;
-        public static ushort[] _islands;
+        public static ushort[] _islandsMap;
+        public static List<TextureIsland> _islands;
+        public static bool _islandsDetected;
         public static int _texSize;
         public static float _scaler;
 
@@ -123,16 +125,17 @@ namespace RIKA_IMBANIKA_TEXTURER
                 _texSize = texSize;
                 _scaler = scaler * DefineScaleCoefficient();
                 _radiuses = new float[texSize * texSize];
-                _islands = new ushort[texSize * texSize];
+                _islandsMap = new ushort[texSize * texSize];
 
                 WriteableBitmap wbmp = WBMP.Create(_texSize);
                 _daemon = WBMP.Create(_texSize);
 
-                List<TextureIsland> islands = IslandDetector.DetectIslands(_obj);
-                for (ushort island = 1; island <= islands.Count; island++)
+                DetectIslands();
+
+                for (ushort island = 1; island <= _islands.Count; island++)
                 {
-                    FillSizes(islands[island - 1].FaceIndices, island);
-                    Rect bounds = islands[island - 1].Bounds;
+                    FillSizes(_islands[island - 1].FaceIndices, island);
+                    Rect bounds = _islands[island - 1].Bounds;
 
                     _circles = new List<Vector2>();
                     _circlesRadiuses = new List<float>();
@@ -243,15 +246,12 @@ namespace RIKA_IMBANIKA_TEXTURER
                     {
                         int x = S.Rnd.Next((int)(bounds.Left * texSize), (int)(bounds.Right * texSize));
                         int y = S.Rnd.Next((int)(bounds.Top * texSize), (int)(bounds.Bottom * texSize));
-                        if (_islands[x + y * texSize] == islandIndex)
+                        if (_islandsMap[x + y * texSize] == islandIndex)
                             return new Vector2(x, y);
                     }
                 }
 
-                float DefineScaleCoefficient()
-                {
-                    return _obj.GetMaxSize() / 3f;
-                }
+
 
                 void MoreMoreMore((int x, int y) point, ushort islandId)
                 {
@@ -337,11 +337,29 @@ namespace RIKA_IMBANIKA_TEXTURER
                             (x, y) =>
                             {
                                 _radiuses[x + y * _texSize] = ti.InterpolateOptimized(x, y);
-                                _islands[x + y * _texSize] = islandIndex;
+                                _islandsMap[x + y * _texSize] = islandIndex;
                             }
                         );
                     }
                 }
+            }
+        }
+
+        public static void Do2(int texSize, float scaler)
+        {
+            //IDK, this was an idea
+
+            Thread mt = new Thread(MT);
+            mt.Start();
+
+            void MT()
+            {
+                _texSize = texSize;
+                _scaler = scaler * DefineScaleCoefficient();
+                _radiuses = new float[texSize * texSize];
+                _islandsMap = new ushort[texSize * texSize];
+
+                WriteableBitmap wbmp = WBMP.Create(_texSize);
             }
         }
 
@@ -358,7 +376,20 @@ namespace RIKA_IMBANIKA_TEXTURER
 
             void MT()
             {
+                DetectIslands();
+
+                for (int iid = 0; iid < _islands.Count(); iid++)
+                {
+                    TextureIsland island = _islands[iid];
+
+
+                }
             }
+        }
+
+        public static float DefineScaleCoefficient()
+        {
+            return _obj.GetMaxSize() / 3f;
         }
 
         public static float GetRadius(int x, int y)
@@ -379,12 +410,21 @@ namespace RIKA_IMBANIKA_TEXTURER
             if (x < 0 || x >= _texSize || y < 0 || y >= _texSize)
                 return 0;
 
-            return _islands[x + y * _texSize];
+            return _islandsMap[x + y * _texSize];
         }
 
         public static ushort GetIsland(Vector2 point)
         {
             return GetIsland((ushort)point.X, (ushort)point.Y);
+        }
+
+        public static void DetectIslands()
+        {
+            if (!_islandsDetected)
+            {
+                _islands = IslandDetector.DetectIslands(_obj);
+                _islandsDetected = true;
+            }
         }
     }
 }

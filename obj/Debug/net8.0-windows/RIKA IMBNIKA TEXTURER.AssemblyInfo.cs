@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RIKA IMBNIKA TEXTURER")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e1a33e5bf4c8d833da80478719302a63ac05b09f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+357e3defb042f58d4ce5f2cd7de1873351c201ba")]
 [assembly: System.Reflection.AssemblyProductAttribute("RIKA IMBNIKA TEXTURER")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RIKA IMBNIKA TEXTURER")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
