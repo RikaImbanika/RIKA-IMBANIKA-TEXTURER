@@ -163,7 +163,7 @@
                     <Image x:Name="texPreview" Grid.Column="1"></Image>
                 </Grid>
 
-                <Border Height="60" Margin="10,0,10,10" Background="#FF2196F3" CornerRadius="4">
+                <Border Height="60" Margin="10,0,10,10" Background="Gray" CornerRadius="4">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -178,7 +178,7 @@
                             <ComboBox.Style>
                                 <Style TargetType="ComboBox">
                                     <Setter Property="Foreground" Value="White"/>
-                                    <Setter Property="Background" Value="#FF2196F3"/>
+                                    <Setter Property="Background" Value="Gray"/>
                                     <Setter Property="BorderBrush" Value="#FF000000"/>
                                     <Setter Property="BorderThickness" Value="2"/>
                                     <Setter Property="Template">
@@ -191,7 +191,7 @@ IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource 
 ClickMode="Press">
                                                         <ToggleButton.Template>
                                                             <ControlTemplate TargetType="ToggleButton">
-                                                                <Grid Background="#FF2196F3">
+                                                                <Grid Background="Gray">
                                                                     <Grid.ColumnDefinitions>
                                                                         <ColumnDefinition Width="*"/>
                                                                         <ColumnDefinition Width="20"/>
@@ -236,7 +236,7 @@ ClickMode="Press">
                                 MinWidth="{TemplateBinding ActualWidth}"
                                 MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                                             <Border x:Name="DropDownBorder"
-                                      Background="#FF2196F3"
+                                      Background="Gray"
                                       BorderBrush="#FF000000"
                                       BorderThickness="2"
                                       CornerRadius="0,0,4,4"/>

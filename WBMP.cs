@@ -78,7 +78,7 @@ namespace RIKA_IMBANIKA_TEXTURER
             SetPixel(buffer, stride, bytesPerPixel, x0 - y, y0 - x, color);
         }
 
-        private static unsafe void SetPixel(byte* buffer, int stride, int bytesPerPixel, int x, int y, Color color)
+        public static unsafe void SetPixel(byte* buffer, int stride, int bytesPerPixel, int x, int y, Color color)
         {
             int index = y * stride + x * bytesPerPixel;
 
@@ -396,14 +396,187 @@ namespace RIKA_IMBANIKA_TEXTURER
             }
         }
 
+        public static void CloneWithMask(
+            WriteableBitmap to,
+            WriteableBitmap from,
+            Vector2 toPoint,
+            Vector2 fromPoint,
+            float radius,
+            ushort island,
+            float scale = 1f,
+            float rotation = 0f)
+        {
+            if (scale <= 0) return;
+            int r = (int)radius;
+            int maskSize = 2 * r + 1;
+            byte[] mask = CreateLogarithmicMask(maskSize);
+
+            int x0_to = (int)toPoint.X;
+            int y0_to = (int)toPoint.Y;
+            int x0_from = (int)fromPoint.X;
+            int y0_from = (int)fromPoint.Y;
+            int rSquared = r * r;
+
+            // Радиус области в целевом изображении с учётом масштаба
+            float targetRadiusFloat = scale * radius;
+            int targetR = (int)Math.Ceiling(targetRadiusFloat);
+            int targetRSquared = targetR * targetR;
+
+            int left = Math.Max(0, x0_to - targetR);
+            int right = Math.Min(to.PixelWidth - 1, x0_to + targetR);
+            int top = Math.Max(0, y0_to - targetR);
+            int bottom = Math.Min(to.PixelHeight - 1, y0_to + targetR);
+            if (left > right || top > bottom) return;
+
+            to.Lock();
+            from.Lock();
+
+            try
+            {
+                unsafe
+                {
+                    byte* bufferTo = (byte*)to.BackBuffer;
+                    int strideTo = to.BackBufferStride;
+                    byte* bufferFrom = (byte*)from.BackBuffer;
+                    int strideFrom = from.BackBufferStride;
+
+                    float cos = (float)Math.Cos(rotation);
+                    float sin = (float)Math.Sin(rotation);
+                    float invScale = 1f / scale;
+
+                    for (int y = top; y <= bottom; y++)
+                    {
+                        int dy = y - y0_to;
+                        int dySquared = dy * dy;
+                        if (dySquared > targetRSquared) continue;
+
+                        int dxLimit = (int)Math.Sqrt(targetRSquared - dySquared);
+                        int xStart = Math.Max(left, x0_to - dxLimit);
+                        int xEnd = Math.Min(right, x0_to + dxLimit);
+
+                        for (int x = xStart; x <= xEnd; x++)
+                        {
+                            int dx = x - x0_to;
+
+                            // Преобразование координат с учётом масштаба и поворота
+                            float newDx = invScale * (dx * cos - dy * sin);
+                            float newDy = invScale * (dx * sin + dy * cos);
+
+                            float srcXFloat = x0_from + newDx;
+                            float srcYFloat = y0_from + newDy;
+
+                            int srcX = (int)Math.Round(srcXFloat);
+                            int srcY = (int)Math.Round(srcYFloat);
+
+                            if (srcX < 0 || srcX >= from.PixelWidth || srcY < 0 || srcY >= from.PixelHeight)
+                                continue;
+
+                            if (Texturer.GetIsland(x, y) != island)
+                                continue;
+
+                            int maskX = (int)Math.Round(newDx + r);
+                            int maskY = (int)Math.Round(newDy + r);
+                            if (maskX < 0 || maskX >= maskSize || maskY < 0 || maskY >= maskSize)
+                                continue;
+
+                            byte maskAlpha = mask[maskY * maskSize + maskX];
+                            if (maskAlpha == 0) continue;
+
+                            int toIdx = y * strideTo + x * 4;
+                            int fromIdx = srcY * strideFrom + srcX * 4;
+
+                            byte srcB = bufferFrom[fromIdx];
+                            byte srcG = bufferFrom[fromIdx + 1];
+                            byte srcR = bufferFrom[fromIdx + 2];
+                            byte srcA = bufferFrom[fromIdx + 3];
+                            if (srcA == 0) continue;
+
+                            byte dstB = bufferTo[toIdx];
+                            byte dstG = bufferTo[toIdx + 1];
+                            byte dstR = bufferTo[toIdx + 2];
+                            byte dstA = bufferTo[toIdx + 3];
+
+                            float srcAlpha = (srcA / 255f) * (maskAlpha / 255f);
+                            float dstAlpha = dstA / 255f;
+
+                            if (srcAlpha >= 0.999f)
+                            {
+                                bufferTo[toIdx] = srcB;
+                                bufferTo[toIdx + 1] = srcG;
+                                bufferTo[toIdx + 2] = srcR;
+                                bufferTo[toIdx + 3] = 255;
+                                continue;
+                            }
+
+                            if (dstAlpha == 0)
+                            {
+                                bufferTo[toIdx] = srcB;
+                                bufferTo[toIdx + 1] = srcG;
+                                bufferTo[toIdx + 2] = srcR;
+                                bufferTo[toIdx + 3] = (byte)(srcAlpha * 255);
+                                continue;
+                            }
+
+                            float outAlpha = srcAlpha + dstAlpha * (1 - srcAlpha);
+                            if (outAlpha < 0.001f)
+                            {
+                                bufferTo[toIdx] = 0;
+                                bufferTo[toIdx + 1] = 0;
+                                bufferTo[toIdx + 2] = 0;
+                                bufferTo[toIdx + 3] = 0;
+                                continue;
+                            }
+
+                            float outB = (srcB * srcAlpha + dstB * dstAlpha * (1 - srcAlpha)) / outAlpha;
+                            float outG = (srcG * srcAlpha + dstG * dstAlpha * (1 - srcAlpha)) / outAlpha;
+                            float outR = (srcR * srcAlpha + dstR * dstAlpha * (1 - srcAlpha)) / outAlpha;
+
+                            bufferTo[toIdx] = (byte)Math.Clamp(outB, 0, 255);
+                            bufferTo[toIdx + 1] = (byte)Math.Clamp(outG, 0, 255);
+                            bufferTo[toIdx + 2] = (byte)Math.Clamp(outR, 0, 255);
+                            bufferTo[toIdx + 3] = (byte)(outAlpha * 255);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                to.AddDirtyRect(new Int32Rect(left, top, right - left + 1, bottom - top + 1));
+                from.Unlock();
+                to.Unlock();
+            }
+        }
+
         public static void SaveToPng(WriteableBitmap wbmp, string filePath)
         {
+            // Mirrow
+            var transformed = new TransformedBitmap(
+                wbmp,
+                new ScaleTransform(1, -1, 0, wbmp.PixelHeight / 2.0)
+            );
+
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
                 var encoder = new PngBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create(wbmp));
+                encoder.Frames.Add(BitmapFrame.Create(transformed));
                 encoder.Save(fileStream);
             }
+        }
+
+        public static BitmapImage FlipVertical(BitmapImage source)
+        {
+            var transformed = new TransformedBitmap(source, new ScaleTransform(1, -1));
+            var encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(transformed));
+            using var stream = new MemoryStream();
+            encoder.Save(stream);
+            stream.Position = 0;
+            var result = new BitmapImage();
+            result.BeginInit();
+            result.StreamSource = stream;
+            result.CacheOption = BitmapCacheOption.OnLoad;
+            result.EndInit();
+            return result;
         }
 
         public static Color GetPixel(WriteableBitmap wbmp, int x, int y)

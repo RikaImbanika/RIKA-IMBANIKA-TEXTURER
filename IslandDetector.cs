@@ -28,12 +28,10 @@ namespace RIKA_IMBANIKA_TEXTURER
         }
 
         private static void FloodFillIsland(Obj obj, int startFaceIndex,
-    bool[] visitedFaces, TextureIsland island)
+        bool[] visitedFaces, TextureIsland island)
         {
             var stack = new Stack<int>();
             stack.Push(startFaceIndex);
-
-            var uvIndexMap = new Dictionary<int, int>(); // old index -> new index
 
             while (stack.Count > 0)
             {
@@ -45,23 +43,25 @@ namespace RIKA_IMBANIKA_TEXTURER
 
                 var face = obj.Faces[faceIdx];
 
-                // Process UV indices for this face
-                foreach (var oldUvIdx in face.TexCoordIndices)
+                int[] triIndices = new int[3];
+                for (int k = 0; k < face.TexCoordIndices.Count; k++)
                 {
-                    if (!uvIndexMap.ContainsKey(oldUvIdx))
+                    int oldUvIdx = face.TexCoordIndices[k];
+                    if (!island.GlobalUvToLocal.TryGetValue(oldUvIdx, out int localIdx))
                     {
-                        uvIndexMap[oldUvIdx] = island.UVs.Count;
+                        localIdx = island.UVs.Count;
                         island.UVs.Add(obj.TexCoords[oldUvIdx]);
+                        island.GlobalUvToLocal[oldUvIdx] = localIdx;
                     }
+                    triIndices[k] = localIdx;
                 }
 
-                // Get neighbors without passing visitedFaces
+                island.Triangles.Add((triIndices[0], triIndices[1], triIndices[2]));
+
                 foreach (int neighborIdx in FindNeighborFaces(obj, faceIdx, visitedFaces))
                 {
                     if (!visitedFaces[neighborIdx])
-                    {
                         stack.Push(neighborIdx);
-                    }
                 }
             }
         }

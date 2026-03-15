@@ -3,56 +3,72 @@
   "WorkspaceRootPath": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\texturer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|solutionrelative:texturer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\s.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|solutionrelative:s.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\texturer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:texturer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\circleslogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|solutionrelative:circleslogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\wbmp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:wbmp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\trianglerasterizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:trianglerasterizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\wbmp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|solutionrelative:wbmp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\portaldetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:portaldetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\trianglerasterizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|solutionrelative:trianglerasterizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\boudaryextractor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:boudaryextractor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\circletopointsolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|solutionrelative:circletopointsolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\textureisland.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:textureisland.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\textureisland.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|solutionrelative:textureisland.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\islanddetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:islanddetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\islanddetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|solutionrelative:islanddetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\portal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:portal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\windowsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|solutionrelative:windowsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\obj.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:obj.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\triangleinterpolator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|solutionrelative:triangleinterpolator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\s.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:s.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\face.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA TEXTURER.csproj|solutionrelative:face.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\graphpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:graphpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\circleslogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:circleslogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\windowsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:windowsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\triangleinterpolator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:triangleinterpolator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|f:\\programmer\\rika-imbanika-texturer\\face.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996E6332-EABB-4191-96C3-D0DC8FF2BDA7}|RIKA IMBNIKA TEXTURER.csproj|solutionrelative:face.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,7 +78,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 18,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,20 +90,96 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
+              "Title": "PortalDetector.cs",
+              "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\PortalDetector.cs",
+              "RelativeDocumentMoniker": "PortalDetector.cs",
+              "ToolTip": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\PortalDetector.cs",
+              "RelativeToolTip": "PortalDetector.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAAwJQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-15T14:00:01.806Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Portal.cs",
+              "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\Portal.cs",
+              "RelativeDocumentMoniker": "Portal.cs",
+              "ToolTip": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\Portal.cs",
+              "RelativeToolTip": "Portal.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-15T13:59:19.901Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Obj.cs",
+              "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\Obj.cs",
+              "RelativeDocumentMoniker": "Obj.cs",
+              "ToolTip": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\Obj.cs",
+              "RelativeToolTip": "Obj.cs",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAqwIIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-15T13:54:31.627Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IslandDetector.cs",
+              "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\IslandDetector.cs",
+              "RelativeDocumentMoniker": "IslandDetector.cs",
+              "ToolTip": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\IslandDetector.cs",
+              "RelativeToolTip": "IslandDetector.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAowAAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-15T13:48:56.09Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BoudaryExtractor.cs",
+              "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\BoudaryExtractor.cs",
+              "RelativeDocumentMoniker": "BoudaryExtractor.cs",
+              "ToolTip": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\BoudaryExtractor.cs",
+              "RelativeToolTip": "BoudaryExtractor.cs",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAAwHEAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-15T08:21:33.254Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "GraphPoint.cs",
+              "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\GraphPoint.cs",
+              "RelativeDocumentMoniker": "GraphPoint.cs",
+              "ToolTip": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\GraphPoint.cs",
+              "RelativeToolTip": "GraphPoint.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T07:44:09.955Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "S.cs",
               "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\S.cs",
               "RelativeDocumentMoniker": "S.cs",
               "ToolTip": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\S.cs",
               "RelativeToolTip": "S.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-29T16:51:09.622Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-29T16:51:09.622Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 13,
               "Title": "CirclesLogic.cs",
               "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\CirclesLogic.cs",
               "RelativeDocumentMoniker": "CirclesLogic.cs",
@@ -95,12 +187,11 @@
               "RelativeToolTip": "CirclesLogic.cs",
               "ViewState": "AgIAAFkAAAAAAAAAAAAewKoAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T23:49:48.641Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-26T23:49:48.641Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "WindowsManager.cs",
               "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\WindowsManager.cs",
               "RelativeDocumentMoniker": "WindowsManager.cs",
@@ -108,51 +199,24 @@
               "RelativeToolTip": "WindowsManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T17:15:23.228Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-26T17:15:23.228Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "WBMP.cs",
               "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\WBMP.cs",
               "RelativeDocumentMoniker": "WBMP.cs",
               "ToolTip": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\WBMP.cs",
               "RelativeToolTip": "WBMP.cs",
-              "ViewState": "AgIAABcCAAAAAAAAAAAcwCQCAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAewGAAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-26T17:08:14.136Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CircleToPointSolver.cs",
-              "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\CircleToPointSolver.cs",
-              "RelativeDocumentMoniker": "CircleToPointSolver.cs",
-              "ToolTip": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\CircleToPointSolver.cs",
-              "RelativeToolTip": "CircleToPointSolver.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAUwBUAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T15:48:09.218Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "IslandDetector.cs",
-              "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\IslandDetector.cs",
-              "RelativeDocumentMoniker": "IslandDetector.cs",
-              "ToolTip": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\IslandDetector.cs",
-              "RelativeToolTip": "IslandDetector.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAkwCIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-21T22:06:25.878Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "TriangleInterpolator.cs",
               "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\TriangleInterpolator.cs",
               "RelativeDocumentMoniker": "TriangleInterpolator.cs",
@@ -160,25 +224,24 @@
               "RelativeToolTip": "TriangleInterpolator.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAAgwDMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-21T21:48:10.585Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T21:48:10.585Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "TextureIsland.cs",
               "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\TextureIsland.cs",
               "RelativeDocumentMoniker": "TextureIsland.cs",
               "ToolTip": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\TextureIsland.cs",
               "RelativeToolTip": "TextureIsland.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAYwF0AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-21T18:43:27.599Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "Face.cs",
               "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\Face.cs",
               "RelativeDocumentMoniker": "Face.cs",
@@ -186,12 +249,11 @@
               "RelativeToolTip": "Face.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAUwAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-21T17:27:52.726Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T17:27:52.726Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
@@ -203,26 +265,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "TriangleRasterizer.cs",
               "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\TriangleRasterizer.cs",
               "RelativeDocumentMoniker": "TriangleRasterizer.cs",
               "ToolTip": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\TriangleRasterizer.cs",
               "RelativeToolTip": "TriangleRasterizer.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwA8AAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAAAGgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-21T22:01:17.794Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Texturer.cs",
               "DocumentMoniker": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\Texturer.cs",
               "RelativeDocumentMoniker": "Texturer.cs",
               "ToolTip": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\Texturer.cs",
               "RelativeToolTip": "Texturer.cs",
-              "ViewState": "AgIAAG0AAAAAAAAAAAAwwBkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADgBAAAAAAAAAAD4v1EBAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-21T16:21:49.117Z",
               "EditorCaption": ""
@@ -235,7 +297,7 @@
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "F:\\Programmer\\RIKA-IMBANIKA-TEXTURER\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAuwB0AAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAgwE4AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-23T21:45:37.13Z",
               "EditorCaption": ""

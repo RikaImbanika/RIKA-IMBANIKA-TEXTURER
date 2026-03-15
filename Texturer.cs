@@ -13,6 +13,8 @@ namespace RIKA_IMBANIKA_TEXTURER
 {
     public static class Texturer
     {
+        public static WriteableBitmap _wbmp;
+        public static WriteableBitmap _wbmp2;
         public static BitmapImage _tex;
         public static BitmapImage _resImg;
         public static Obj _obj;
@@ -122,24 +124,23 @@ namespace RIKA_IMBANIKA_TEXTURER
 
             void MT()
             {
+                if (texSize != _texSize)
+                    _islandsDetected = false;
+
                 _texSize = texSize;
                 _scaler = scaler * DefineScaleCoefficient();
-                _radiuses = new float[texSize * texSize];
-                _islandsMap = new ushort[texSize * texSize];
 
-                WriteableBitmap wbmp = WBMP.Create(_texSize);
+                _wbmp = WBMP.Create(_texSize);
                 _daemon = WBMP.Create(_texSize);
 
-                DetectIslands();
+                TryDetectIslands();
 
                 for (ushort island = 1; island <= _islands.Count; island++)
                 {
-                    FillSizes(_islands[island - 1].FaceIndices, island);
                     Rect bounds = _islands[island - 1].Bounds;
 
                     _circles = new List<Vector2>();
                     _circlesRadiuses = new List<float>();
-                    //_border = new List<int>();
                     List<Vector2> nextPoints = new List<Vector2>();
 
                     for (int i = 0; i < startCount; i++)
@@ -194,13 +195,13 @@ namespace RIKA_IMBANIKA_TEXTURER
 
                         WriteableBitmap img = GetCachedImage(rotationId, scaleId);
 
-                        WBMP.FillTextureCircleWithAlpha(wbmp, pos, img, island);
+                        WBMP.FillTextureCircleWithAlpha(_wbmp, pos, img, island);
 
                         _t++;
 
                         if (_t % 105 == 0)
                         {
-                            _resImg = WBMP.ConvertToBitmapImage(wbmp);
+                            _resImg = WBMP.ConvertToBitmapImage(_wbmp);
 
                             WindowsManager._mainWindow.Dispatcher.Invoke(() =>
                             {
@@ -229,16 +230,18 @@ namespace RIKA_IMBANIKA_TEXTURER
 
                 WBMP.SaveToPng(_daemon, $"{S.PF}Result1.png");
 
-                _resImg = WBMP.ConvertToBitmapImage(wbmp);
+                _resImg = WBMP.ConvertToBitmapImage(_wbmp);
 
                 WindowsManager._mainWindow.Dispatcher.Invoke(() =>
                 {
                     WindowsManager._mainWindow.img.Source = _resImg;
                 });
 
-                WBMP.SaveToPng(wbmp, $"{S.PF}Result2.png");
+                WBMP.SaveToPng(_wbmp, $"{S.PF}Result2.png");
 
                 ClearCache();
+
+                Smooth(_texSize);
 
                 Vector2 GetStartPoint(Rect bounds, ushort islandIndex)
                 {
@@ -250,8 +253,6 @@ namespace RIKA_IMBANIKA_TEXTURER
                             return new Vector2(x, y);
                     }
                 }
-
-
 
                 void MoreMoreMore((int x, int y) point, ushort islandId)
                 {
@@ -309,39 +310,6 @@ namespace RIKA_IMBANIKA_TEXTURER
                         });
                     }
                 }
-
-                void FillSizes(List<int> faceIndexes, ushort islandIndex)
-                {
-                    for (int i = 0; i < faceIndexes.Count; i++)
-                    {
-                        var face = _obj.Faces[faceIndexes[i]];
-                        var v1 = _obj.Vertices[face.VertexIndices[0]];
-                        var v2 = _obj.Vertices[face.VertexIndices[1]];
-                        var v3 = _obj.Vertices[face.VertexIndices[2]];
-                        Vector2 tc1 = _obj.TexCoords[face.TexCoordIndices[0]] * texSize;
-                        Vector2 tc2 = _obj.TexCoords[face.TexCoordIndices[1]] * texSize;
-                        Vector2 tc3 = _obj.TexCoords[face.TexCoordIndices[2]] * texSize;
-                        float e12 = (tc1 - tc2).Length() * _scaler / (v1 - v2).Length();
-                        float e23 = (tc2 - tc3).Length() * _scaler / (v2 - v3).Length();
-                        float e31 = (tc3 - tc1).Length() * _scaler / (v3 - v1).Length();
-                        float p1 = (e12 + e23) / 2;
-                        float p2 = (e23 + e31) / 2;
-                        float p3 = (e31 + e12) / 2;
-
-                        TriangleInterpolator ti = new TriangleInterpolator(tc1, p1, tc2, p2, tc3, p3);
-
-                        TriangleRasterizer.Rasterize(
-                            tc1,
-                            tc2,
-                            tc3,
-                            (x, y) =>
-                            {
-                                _radiuses[x + y * _texSize] = ti.InterpolateOptimized(x, y);
-                                _islandsMap[x + y * _texSize] = islandIndex;
-                            }
-                        );
-                    }
-                }
             }
         }
 
@@ -363,26 +331,179 @@ namespace RIKA_IMBANIKA_TEXTURER
             }
         }
 
-        public static void Smooth()
+        public static void Smooth(int texSize)
         {
-            if (_nextPoints.Count > 0)
-                return;
-
-            if (_circles != null && _circles.Count > 0)
-                return;
+            if (texSize != _texSize)
+                _islandsDetected = false;
+            _texSize = texSize;
 
             Thread mt = new Thread(MT);
             mt.Start();
 
             void MT()
             {
-                DetectIslands();
-
-                for (int iid = 0; iid < _islands.Count(); iid++)
+                WindowsManager._mainWindow.Dispatcher.Invoke(() =>
                 {
+                    _wbmp2 = new WriteableBitmap(_resImg);
+                });
+
+                TryDetectIslands();
+
+                for (ushort iid = 0; iid < _islands.Count; iid++)
+                {
+                    FillSizes(_islands[iid].FaceIndices, (ushort)(iid + 1));
+
                     TextureIsland island = _islands[iid];
+                    List<List<Vector2>> boundaries = BoundaryExtractor.GetBoundaryContours(island.UVs, island.Triangles);
 
+                    for (int bi = 0; bi < boundaries.Count; bi++)
+                    {
+                        List<Vector2> boundary = boundaries[bi];
 
+                        for (int li = 0; li < boundary.Count; li++)
+                        {
+                            Vector2 point1 = boundary[li];
+                            Vector2 point2;
+
+                            if (li < boundary.Count - 1)
+                                point2 = boundary[li + 1];
+                            else
+                                point2 = boundary[0];
+
+                            Vector2 dir = point2 - point1;
+
+                            float distance = dir.Length();
+
+                            Vector2 dir0 = dir / distance;
+
+                            Vector2 truePoint1 = point1 * _texSize;
+
+                            float radius = GetRadius2((int)truePoint1.X, (int)truePoint1.Y);
+
+                            float t = 0.000001f;
+
+                            Vector2 right = new Vector2(dir.Y, -dir.X) / distance;
+
+                            int vertexIndex1 = GetVertexIndex(island, point1);
+                            int vertexIndex2 = GetVertexIndex(island, point2);
+
+                            (int island, int v1, int v2)? adj = PortalDetector.GetAdjacentEdge(iid, vertexIndex1, vertexIndex2);
+
+                            if (adj != null)
+                            {
+                                int otherIsland = adj.Value.island;
+                                int ov1 = adj.Value.v1;
+                                int ov2 = adj.Value.v2;
+
+                                Vector2 a1 = _islands[iid].UVs[vertexIndex1];
+                                Vector2 a2 = _islands[iid].UVs[vertexIndex2];
+                                Vector2 b1 = _islands[otherIsland].UVs[ov1];
+                                Vector2 b2 = _islands[otherIsland].UVs[ov2];
+
+                                Vector2 va = a2 - a1;
+                                Vector2 vb = b2 - b1;
+
+                                float scale = vb.Length() / va.Length();
+                                float angle = (float)Math.Atan2(vb.Y, vb.X) - (float)Math.Atan2(va.Y, va.X);
+                                angle = -angle;
+
+                                Vector2 otherDir = vb;
+                                float otherDistance = otherDir.Length();
+                                Vector2 otherDir0 = otherDir / otherDistance;
+
+                                while (t < distance)
+                                {
+                                    Vector2 point = point1 + dir0 * t;
+
+                                    Vector2 truePoint = point * _texSize;
+
+                                    float pixel = 1f / _texSize;
+
+                                    if (GetIsland(truePoint) == iid + 1)
+                                    {
+                                        float radius2 = GetRadius2((int)truePoint.X, (int)truePoint.Y);
+                                        if (radius2 > pixel)
+                                            radius = radius2;
+                                    }
+
+                                    float otherT = t * scale;
+
+                                    Vector2 otherPoint = b1 + otherDir0 * otherT;
+
+                                    Vector2 step = (1f + S.Rnd.NextSingle()) * right * radius;
+
+                                    while (!Inside() && radius > pixel)
+                                    {
+                                        radius *= 0.75f;
+
+                                        step = (1f + S.Rnd.NextSingle()) * right * radius;
+                                    }
+
+                                    if (radius > pixel)
+                                        Draw();
+                                    else
+                                        radius = pixel;
+
+                                    t += radius * 0.5f;
+
+                                    void Draw()
+                                    {
+                                        float trueRadius = radius * _texSize;
+                                        Vector2 trueOtherPoint = otherPoint * _texSize;
+
+                                        Vector2 from = (point + step) * _texSize;
+
+                                        WindowsManager._mainWindow.Dispatcher.Invoke(() =>
+                                        {
+                                            ushort iid2 = Convert.ToUInt16(iid + 1);
+                                            WBMP.CloneWithMask(_wbmp2, _wbmp2, truePoint, from, trueRadius, iid2);
+                                            
+                                            ushort oid = Convert.ToUInt16(otherIsland + 1);
+                                            WBMP.CloneWithMask(_wbmp2, _wbmp2, trueOtherPoint, from, trueRadius, oid, scale, angle);
+                                        });
+                                    }
+
+                                    bool Inside()
+                                    {
+                                        for (int k = 0; k < boundaries.Count; k++)
+                                            if (!TextureIsland.IsInside(point + step, radius, boundaries[k]))
+                                                return false;
+
+                                        return true;
+                                    }
+                                }
+                            }
+
+                            int GetVertexIndex(TextureIsland island, Vector2 point, float epsilon = 1e-6f)
+                            {
+                                for (int i = 0; i < island.UVs.Count; i++)
+                                    if (Vector2.DistanceSquared(island.UVs[i], point) < epsilon * epsilon)
+                                        return i;
+                                return -1;
+                            }
+                        }
+                    }
+
+                    Show();
+                }
+
+                Bleed();
+
+                Show();
+
+                WindowsManager._mainWindow.Dispatcher.Invoke(() =>
+                {
+                    WBMP.SaveToPng(_wbmp2, $"{S.PF}Result3.png");
+                });
+
+                void Show()
+                {
+                    WindowsManager._mainWindow.Dispatcher.Invoke(() =>
+                    {
+                        _resImg = WBMP.ConvertToBitmapImage(_wbmp2);
+
+                        WindowsManager._mainWindow.img.Source = _resImg;
+                    });
                 }
             }
         }
@@ -405,26 +526,157 @@ namespace RIKA_IMBANIKA_TEXTURER
             return GetRadius((int)point.X, (int)point.Y);
         }
 
+        public static float GetRadius2(int px, int py)
+        {
+            float rad = GetRadius(px, py) / _texSize;
+            rad *= 0.2f * (1f + S.Rnd.NextSingle() * 4f);
+            return rad;
+        }
+
         public static ushort GetIsland(int x, int y)
         {
             if (x < 0 || x >= _texSize || y < 0 || y >= _texSize)
-                return 0;
+                return ushort.MaxValue;
 
             return _islandsMap[x + y * _texSize];
         }
 
         public static ushort GetIsland(Vector2 point)
         {
-            return GetIsland((ushort)point.X, (ushort)point.Y);
+            return GetIsland((int)point.X, (int)point.Y);
         }
 
-        public static void DetectIslands()
+        public static void TryDetectIslands()
         {
             if (!_islandsDetected)
             {
                 _islands = IslandDetector.DetectIslands(_obj);
+                _radiuses = new float[_texSize * _texSize];
+                _islandsMap = new ushort[_texSize * _texSize];
                 _islandsDetected = true;
+                PortalDetector.DetectPortals(_obj, _islands);
+
+                for (ushort island = 1; island <= _islands.Count; island++)
+                {
+                    FillSizes(_islands[island - 1].FaceIndices, island);
+                }
             }
+        }
+
+        public static void FillSizes(List<int> faceIndexes, ushort islandIndex)
+        {
+            for (int i = 0; i < faceIndexes.Count; i++)
+            {
+                var face = _obj.Faces[faceIndexes[i]];
+                var v1 = _obj.Vertices[face.VertexIndices[0]];
+                var v2 = _obj.Vertices[face.VertexIndices[1]];
+                var v3 = _obj.Vertices[face.VertexIndices[2]];
+                Vector2 tc1 = _obj.TexCoords[face.TexCoordIndices[0]] * _texSize;
+                Vector2 tc2 = _obj.TexCoords[face.TexCoordIndices[1]] * _texSize;
+                Vector2 tc3 = _obj.TexCoords[face.TexCoordIndices[2]] * _texSize;
+                float e12 = (tc1 - tc2).Length() * _scaler / (v1 - v2).Length();
+                float e23 = (tc2 - tc3).Length() * _scaler / (v2 - v3).Length();
+                float e31 = (tc3 - tc1).Length() * _scaler / (v3 - v1).Length();
+                float p1 = (e12 + e23) / 2;
+                float p2 = (e23 + e31) / 2;
+                float p3 = (e31 + e12) / 2;
+
+                TriangleInterpolator ti = new TriangleInterpolator(tc1, p1, tc2, p2, tc3, p3);
+
+                TriangleRasterizer.Rasterize(
+                    tc1,
+                    tc2,
+                    tc3,
+                    (x, y) =>
+                    {
+                        _radiuses[x + y * _texSize] = ti.InterpolateOptimized(x, y);
+                        _islandsMap[x + y * _texSize] = islandIndex;
+                    }
+                );
+            }
+        }
+
+        public static void Bleed()
+        {
+            if (_wbmp2 == null)
+                return;
+            if (_islandsMap == null)
+                return;
+
+            WindowsManager._mainWindow.Dispatcher.Invoke(() =>
+            {
+                int w = _wbmp2.PixelWidth;
+                int h = _wbmp2.PixelHeight;
+
+                _wbmp2.Lock();
+                try
+                {
+                    unsafe
+                    {
+                        int stride = _wbmp2.BackBufferStride;
+                        int bytesPerPixel = (_wbmp2.Format.BitsPerPixel + 7) / 8;
+                        byte* buffer = (byte*)_wbmp2.BackBuffer;
+
+                        bool[] visited = new bool[w * h];
+                        Queue<(int x, int y)> queue = new Queue<(int x, int y)>();
+
+                        for (int y = 0; y < h; y++)
+                            for (int x = 0; x < w; x++)
+                            {
+                                int idx = x + y * w;
+                                if (_islandsMap[idx] != 0)
+                                {
+                                    queue.Enqueue((x, y));
+                                    visited[idx] = true;
+                                }
+                            }
+
+                        int[] dx = { -1, 1, 0, 0, -1, -1, 1, 1 };
+                        int[] dy = { 0, 0, -1, 1, -1, 1, -1, 1 };
+
+                        while (queue.Count > 0)
+                        {
+                            var (x, y) = queue.Dequeue();
+                            int pixelOffset = y * stride + x * bytesPerPixel;
+
+                            Color color = Color.FromArgb(
+                                a: buffer[pixelOffset + 3],
+                                r: buffer[pixelOffset + 2],
+                                g: buffer[pixelOffset + 1],
+                                b: buffer[pixelOffset]
+                            );
+
+                            for (int i = 0; i < 8; i++)
+                            {
+                                int nx = x + dx[i];
+                                int ny = y + dy[i];
+                                if (nx < 0 || nx >= w || ny < 0 || ny >= h) continue;
+
+                                int nIdx = nx + ny * w;
+                                if (visited[nIdx]) continue;
+
+                                if (_islandsMap[nIdx] == 0)
+                                {
+                                    int nOffset = ny * stride + nx * bytesPerPixel;
+                                    buffer[nOffset] = color.B;
+                                    buffer[nOffset + 1] = color.G;
+                                    buffer[nOffset + 2] = color.R;
+                                    buffer[nOffset + 3] = color.A;
+                                }
+
+                                visited[nIdx] = true;
+                                queue.Enqueue((nx, ny));
+                            }
+                        }
+
+                        _wbmp2.AddDirtyRect(new Int32Rect(0, 0, w, h));
+                    }
+                }
+                finally
+                {
+                    _wbmp2.Unlock();
+                }
+            });
         }
     }
 }

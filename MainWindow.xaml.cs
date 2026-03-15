@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,6 +36,52 @@ public partial class MainWindow : Window
         texPreview.Source = noTex;
 
         Title = $"{S.AppName} - {S.GetHello()}";
+
+        try
+        {
+            string mp = File.ReadAllText($"{S.PF}MP");
+
+            Texturer._obj = Obj.Parse(mp);
+            Texturer._obj.Triangulate();
+
+            string tp = File.ReadAllText($"{S.PF}TP");
+
+            Texturer._tex = new BitmapImage();
+            Texturer._tex.BeginInit();
+            Texturer._tex.UriSource = new Uri(tp);
+            Texturer._tex.EndInit();
+
+            img.Source = Texturer._tex;
+            texPreview.Source = Texturer._tex;
+
+            Texturer._resImg = new BitmapImage();
+            Texturer._resImg.BeginInit();
+            Texturer._resImg.UriSource = new Uri($"{S.PF}Result2.png");
+            Texturer._resImg.EndInit();
+
+            Texturer._resImg = WBMP.FlipVertical(Texturer._resImg);
+
+            img.Source = Texturer._resImg;
+
+            Texturer._texSize = Texturer._resImg.PixelWidth;
+            string target = Texturer._texSize.ToString();
+            int index = -1;
+            for (int i = 0; i < Resolution.Items.Count; i++)
+            {
+                var item = Resolution.Items[i];
+                string text = (item is ComboBoxItem cbi) ? cbi.Content.ToString() : item.ToString();
+                if (text.Trim() == target)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            Resolution.SelectedIndex = index;
+        }
+        catch
+        {
+
+        }
     }
 
     private void ScaleContent(object sender, RoutedEventArgs e)
@@ -73,6 +120,8 @@ public partial class MainWindow : Window
         {
             Texturer._obj = Obj.Parse(openFileDialog.FileName);
             Texturer._obj.Triangulate();
+
+            File.WriteAllText($"{S.PF}MP", openFileDialog.FileName);
         }
     }
 
@@ -105,11 +154,15 @@ public partial class MainWindow : Window
 
             img.Source = Texturer._tex;
             texPreview.Source = Texturer._tex;
+
+            File.WriteAllText($"{S.PF}TP", openFileDialog.FileName);
         }
     }
 
     private void SmoothClick(object sender, RoutedEventArgs e)
     {
-        Texturer.Smooth();
+        int texSize = int.Parse(((ComboBoxItem)Resolution.SelectedItem).Content.ToString());
+
+        Texturer.Smooth(texSize);
     }
 }
